@@ -2,21 +2,21 @@ package view;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import model.Livro;
 import persistence.LivrosJdbcDao;
 
 public class App {
-	private Livro livro;
 	
-	public void Testar() throws ClassNotFoundException, SQLException {
+	public static void main(String args[]) throws ClassNotFoundException, SQLException {
+		Livro livro = new Livro();
+		livro.setId(1);
 		livro.setNome("Burrice");
 		livro.setEditora("None");
 		livro.setAutor("Wexley");
-		Connection conn = persistence.JdbcDao.getConnection();
-		LivrosJdbcDao livroJdbcDao = new LivrosJdbcDao();
-	}
-	public static void main(String args[]) {
-		
+		Connection conn = persistence.JdbcUtil.getConnection();
+		LivrosJdbcDao livroJdbcDao = new LivrosJdbcDao(conn);
+		livroJdbcDao.Listar();
 	}
 }
